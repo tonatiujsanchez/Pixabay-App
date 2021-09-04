@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<app-buscar (onQuery)="buscar($event)"></app-buscar>
+
+<div *ngIf="cargando" class="loading">
+    <app-spinner></app-spinner>
+</div>
+<div *ngIf="results.length <= 0 && !cargando" class="sin-resultados">
+    <h3 class="sin-resultados__text">Sin resultados</h3>
+  </div>
+  
+<app-listado-imagenes [imagenes]="results" ></app-listado-imagenes>

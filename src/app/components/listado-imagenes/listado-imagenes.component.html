@@ -1,0 +1,7 @@
+<div class="card-columns mt-5 mb-5 pr-5 pl-5">
+  <div *ngFor="let foto of imagenes" class="card">
+    <a [href]="foto.largeImageURL" target="_blank">
+      <img class="card-img-top" [src]="foto.webformatURL" [alt]="foto.tags">
+    </a>
+  </div>
+</div>

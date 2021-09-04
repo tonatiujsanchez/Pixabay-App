@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+.hero{
+    padding: 10rem 0 !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}

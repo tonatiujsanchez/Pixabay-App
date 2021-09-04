@@ -1,0 +1,15 @@
+<div class="px-4 py-5 text-center text-white hero" [ngStyle]="{'background': bgHero }">
+    <h1 class="display-5 fw-bold fs-1"> IMÁGENES GRATIS </h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Banco de imágenes de más de 1 millón de imágenes y videos compartidos por una talentosa comunidad.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <div class="w-75">
+            <div class="mb-3 input-group-lg">
+              <input #inputBox (keyup.enter)="buscar()" type="email" class="form-control">
+            </div>
+            <button (click)="buscar()" class="btn btn-success btn-lg w-75">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="b-example-divider"></div>
