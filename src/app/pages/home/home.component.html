@@ -9,3 +9,7 @@
   </div>
   
 <app-listado-imagenes [imagenes]="results" ></app-listado-imagenes>
+
+<div *ngIf="!(_pixabay.pagina >= _pixabay.totalPaginas)" class="d-grid gap-2 col-6 mx-auto mb-5">
+  <button (click)="cargarMas()" class="btn btn-outline-success w-100" type="button">Cargar más</button>
+</div>

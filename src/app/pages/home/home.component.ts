@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   results: Hit[] = [];
   cargando: boolean = false;
-  constructor( private _pixabay: PixabayService ) { }
+  constructor( public _pixabay: PixabayService ) { }
 
   ngOnInit(): void {
     this._pixabay.getDefault().subscribe(
@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   buscar( query:string ){
+
     this.results = [];
     this.cargando = true;
     
@@ -29,6 +30,20 @@ export class HomeComponent implements OnInit {
         this.results = data;
         this.cargando= false;        
       });
+  }
+
+  cargarMas(){
+
+    if( this._pixabay.pagina >= this._pixabay.totalPaginas  ){
+      console.warn('Se acabaron');
+      return;
+    }
+    
+
+    this._pixabay.cargarMas()
+      .subscribe( data =>{
+        this.results.push( ...data );
+      })
   }
 
 }

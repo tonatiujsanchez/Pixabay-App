@@ -13,6 +13,11 @@ export class PixabayService {
   private API_KEY = '6943577-563a2025145473f4ad28c7a9c';
   tipo: string = 'photo';
   idioma: string = 'es';
+  query: string = '';
+  pagina: number = 1;
+
+  totalPaginas: number = 1;
+
   
 
   constructor( private http: HttpClient ) {  }
@@ -31,19 +36,44 @@ export class PixabayService {
   }
 
   getBuscar( query:string ){
+
+
+    this.query = query;
+
     const params = new HttpParams()
     .set('key', this.API_KEY)
     .set( 'image_type', this.tipo )
     .set( 'lang', this.idioma )
-    .set( 'q', query )
+    .set( 'q', this.query )
     .set( 'page', 1 );
+
+
+    return this.http.get<PixabayAPIResponse>( this.url, { params } )
+    .pipe(
+      tap( resp =>{
+        this.totalPaginas = Math.ceil( resp.totalHits / 20 );
+      }),
+      map( (resp ) => resp.hits )
+    );
+
+  }
+
+  cargarMas(){
+    
+    this.pagina++;
+
+    const params = new HttpParams()
+    .set('key', this.API_KEY)
+    .set( 'image_type', this.tipo )
+    .set( 'lang', this.idioma )
+    .set( 'q', this.query )
+    .set( 'page', this.pagina );
 
 
     return this.http.get<PixabayAPIResponse>( this.url, { params } )
     .pipe(
       map( (resp ) => resp.hits )
     );
-
   }
 
 
